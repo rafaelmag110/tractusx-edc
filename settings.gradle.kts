@@ -50,6 +50,7 @@ include(":edc-extensions:transferprocess-sftp-provisioner")
 include(":edc-extensions:edr:edr-api")
 include(":edc-extensions:edr:edr-callback")
 include(":edc-extensions:edr:edr-cache-sql")
+include(":edc-extensions:inject-indexes")
 include(":edc-extensions:cx-policy")
 include("edc-extensions:ssi:ssi-identity-core")
 include("edc-extensions:ssi:ssi-miw-credential-client")
@@ -84,6 +85,9 @@ include(":edc-extensions:dataplane-proxy:edc-dataplane-proxy-provider-api")
 include(":edc-tests:edc-dataplane-proxy-e2e")
 
 include(":samples:multi-tenancy")
+
+// Transfer Process core extension override
+include(":edc-extensions:core:control-plane:transfer-core")
 
 
 // this is needed to have access to snapshot builds of plugins

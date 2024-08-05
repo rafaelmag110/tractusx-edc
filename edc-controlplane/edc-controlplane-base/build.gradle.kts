@@ -43,7 +43,11 @@ dependencies {
     runtimeOnly(project(":edc-extensions:ssi:ssi-identity-extractor"))
     runtimeOnly(project(":edc-extensions:cx-policy"))
 
-    runtimeOnly(libs.edc.core.controlplane)
+    runtimeOnly(libs.edc.core.controlplane) {
+        exclude(group = "org.eclipse.edc", module = "transfer-core")
+    }
+    runtimeOnly(project(":edc-extensions:core:control-plane:transfer-core"))
+
     runtimeOnly(libs.edc.config.filesystem)
 
     runtimeOnly(libs.edc.api.management)
