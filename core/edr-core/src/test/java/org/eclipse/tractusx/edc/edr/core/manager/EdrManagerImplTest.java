@@ -26,6 +26,7 @@ import org.eclipse.edc.spi.monitor.Monitor;
 import org.eclipse.edc.spi.query.Criterion;
 import org.eclipse.edc.spi.query.QuerySpec;
 import org.eclipse.edc.spi.result.StoreResult;
+import org.eclipse.edc.spi.retry.ExponentialWaitStrategy;
 import org.eclipse.tractusx.edc.edr.spi.store.EndpointDataReferenceCache;
 import org.eclipse.tractusx.edc.edr.spi.types.EndpointDataReferenceEntry;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +49,7 @@ import static org.eclipse.edc.connector.transfer.spi.types.TransferProcess.Type.
 import static org.eclipse.edc.spi.persistence.StateEntityStore.hasState;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_BATCH_SIZE;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_EXPIRING_DURATION;
+import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_ITERATION_WAIT;
 import static org.eclipse.tractusx.edc.edr.core.fixtures.TestFunctions.getContractNegotiation;
 import static org.eclipse.tractusx.edc.edr.core.fixtures.TestFunctions.getNegotiateEdrRequest;
 import static org.eclipse.tractusx.edc.edr.core.manager.EdrManagerImpl.LOCAL_CALLBACK;
@@ -81,6 +83,7 @@ public class EdrManagerImplTest {
                 .edrCache(edrCache)
                 .monitor(mock(Monitor.class))
                 .expiredRetention(Duration.ofSeconds(1))
+                .waitStrategy(new ExponentialWaitStrategy(DEFAULT_ITERATION_WAIT))
                 .clock(Clock.systemUTC())
                 .build();
     }

@@ -55,7 +55,6 @@ import static org.eclipse.edc.spi.persistence.StateEntityStore.hasState;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_BATCH_SIZE;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_EXPIRED_RETENTION;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_EXPIRING_DURATION;
-import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_ITERATION_WAIT;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_SEND_RETRY_BASE_DELAY;
 import static org.eclipse.tractusx.edc.edr.core.EdrCoreExtension.DEFAULT_SEND_RETRY_LIMIT;
 import static org.eclipse.tractusx.edc.edr.spi.types.EndpointDataReferenceEntryStates.DELETING;
@@ -77,7 +76,7 @@ public class EdrManagerImpl implements EdrManager {
             .build();
     protected Monitor monitor;
     protected ExecutorInstrumentation executorInstrumentation = ExecutorInstrumentation.noop();
-    protected WaitStrategy waitStrategy = () -> DEFAULT_ITERATION_WAIT;
+    protected WaitStrategy waitStrategy;
 
     protected int batchSize = DEFAULT_BATCH_SIZE;
     protected EntityRetryProcessFactory entityRetryProcessFactory;
